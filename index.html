@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نبض التقنية - مدونتك التقنية الشاملة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#eff6ff', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight bg-gradient-to-r from-brand-600 to-blue-400 bg-clip-text text-transparent">نبض التقنية</span>
+                    <span class="block text-xs text-gray-400 font-medium">مقالات حقيقية ومحدثة</span>
+                </div>
+            </div>
+
+            <!-- Categories Nav -->
+            <nav class="hidden md:flex items-center gap-6 font-medium text-sm">
+                <button onclick="filterCategory('الكل')" class="nav-btn text-brand-600 dark:text-blue-400 font-bold transition">الرئيسية</button>
+                <button onclick="filterCategory('الذكاء الاصطناعي')" class="nav-btn text-gray-600 dark:text-gray-300 hover:text-brand-600 transition">الذكاء الاصطناعي</button>
+                <button onclick="filterCategory('التقنية والابتكار')" class="nav-btn text-gray-600 dark:text-gray-300 hover:text-brand-600 transition">التقنية والابتكار</button>
+                <button onclick="filterCategory('الأمن السيبراني')" class="nav-btn text-gray-600 dark:text-gray-300 hover:text-brand-600 transition">الأمن السيبراني</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="darkModeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 transition">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- AdSense Header Banner -->
+    <div class="max-w-5xl mx-auto px-4 my-6">
+        <div class="bg-white dark:bg-gray-800 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-4 text-center text-xs text-gray-400">
+            مكان إعلان جوجل أدسنس القياسي (728x90)
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="bg-gradient-to-r from-brand-600 to-blue-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">محتوى حصري وموثوق</span>
+                <h1 class="text-3xl sm:text-4xl font-black mt-4 mb-3 leading-tight">عالم التكنولوجيا والذكاء الاصطناعي بين يديك</h1>
+                <p class="text-blue-100 text-sm sm:text-base leading-relaxed mb-6">نقدم لك تحليلات ومقالات يومية عميقة حول أحدث الابتكارات التقنية، الأمن السيبراني، ومستقبل الأدوات الرقمية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Articles List (2 Columns) -->
+            <div class="lg:col-span-2 space-y-6" id="articlesContainer">
+                <!-- Articles injected dynamically via JS -->
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="space-y-6">
+                <!-- AdSense Sidebar Box -->
+                <div class="bg-white dark:bg-gray-800 border border-dashed border-gray-300 dark:border-gray-700 rounded-2xl p-6 text-center text-xs text-gray-400 h-64 flex items-center justify-center">
+                    إعلان شريط جانبي أدسنس (300x600)
+                </div>
+
+                <!-- Categories List -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-100 dark:border-gray-700 pb-3">أقسام المدونة</h3>
+                    <div class="flex flex-col gap-2">
+                        <button onclick="filterCategory('الذكاء الاصطناعي')" class="flex justify-between items-center text-right p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm">
+                            <span>الذكاء الاصطناعي</span>
+                            <span class="bg-brand-50 text-brand-600 dark:bg-gray-600 dark:text-blue-300 px-2 py-0.5 rounded-full text-xs">AI</span>
+                        </button>
+                        <button onclick="filterCategory('التقنية والابتكار')" class="flex justify-between items-center text-right p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm">
+                            <span>التقنية والابتكار</span>
+                            <span class="bg-brand-50 text-brand-600 dark:bg-gray-600 dark:text-blue-300 px-2 py-0.5 rounded-full text-xs">Tech</span>
+                        </button>
+                        <button onclick="filterCategory('الأمن السيبراني')" class="flex justify-between items-center text-right p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm">
+                            <span>الأمن السيبراني</span>
+                            <span class="bg-brand-50 text-brand-600 dark:bg-gray-600 dark:text-blue-300 px-2 py-0.5 rounded-full text-xs">Security</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Article Reader Modal -->
+    <div id="articleModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-6 left-6 text-gray-400 hover:text-gray-600 dark:hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-20 py-10 text-center text-sm text-gray-500">
+        <p>&copy; 2026 نبض التقنية. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        const articles = [
+            {
+                id: 1,
+                title: "كيف يغير الذكاء الاصطناعي التوليدي مستقبل الوظائف والأعمال؟",
+                category: "الذكاء الاصطناعي",
+                date: "2026-06-01",
+                summary: "استعراض شامل لأبرز الأدوات الحديثة وكيف تؤثر نماذج اللغات الكبيرة على كفاءة بيئة العمل وتوليد المحتوى.",
+                content: "يشهد العالم ثورة تقنية غير مسبوقة بفضل نماذج الذكاء الاصطناعي التوليدي. لم تعد هذه الأدوات مجرد وسيلة للترفيه أو التجربة، بل أصبحت ركيزة أساسية في قطاعات البرمجة، التسويق، وتحليل البيانات. الشركات التي تتبنى هذه التقنيات اليوم تسجل نمواً أسرع بكثير من غيرها، مما يطرح تساؤلات مهمة حول مستقبل المهارات المطلوبة في سوق العمل."
+            },
+            {
+                id: 2,
+                title: "أحدث ابتكارات الهواتف القابلة للطي وتأثيرها على تجربة المستخدم",
+                category: "التقنية والابتكار",
+                date: "2026-05-28",
+                summary: "نظرة دقيقة على التطورات الهندسية في شاشات الهواتف الذكية وتقليل سمك المفصلات وبطاريات الجيل الجديد.",
+                content: "تتنافس كبرى الشركات العالمية في تطوير الهواتف الذكية ذات الشاشات المرنة. مع حلول عام 2026، شهدنا انخفاضاً ملحوظاً في طيات الشاشة وارتفاعاً كبيراً في كفاءة البطاريات، مما جعل الأجهزة القابلة للطي خياراً عملياً ومستداماً للمستخدم اليومي بدلاً من كونها مجرد تقنية استعراضية."
+            },
+            {
+                id: 3,
+                title: "دليلك الشامل لحماية حساباتك الشخصية من هجمات الهندسة الاجتماعية",
+                category: "الأمن السيبراني",
+                date: "2026-05-25",
+                summary: "كيف تكتشف رسائل الاحتيال الإلكتروني المتقدمة وتحمي بياناتك الحساسة من الاختراق والاختلاس.",
+                content: "تعتمد معظم الاختراقات الرقمية اليوم على استغلال العامل البشري عبر تقنيات الهندسة الاجتماعية والتصعيد الاحتيالي. من خلال فهم أساليب المهاجمين، مثل انتحال صفة الجهات الرسمية أو الشركات الكبرى، يمكنك اتخاذ خطوات استباقية صارمة لتأمين معلوماتك الشخصية ومحافظك الرقمية."
+            }
+        ];
+
+        function renderArticles(filter = 'الكل') {
+            const container = document.getElementById('articlesContainer');
+            container.innerHTML = '';
+            
+            const filtered = filter === 'الكل' ? articles : articles.filter(a => a.category === filter);
+            
+            filtered.forEach(article => {
+                container.innerHTML += `
+                    <article onclick="openArticle(${article.id})" class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition cursor-pointer">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-brand-50 text-brand-600 dark:bg-gray-700 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-bold">${article.category}</span>
+                            <span class="text-xs text-gray-400">${article.date}</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-2 hover:text-brand-600 transition">${article.title}</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">${article.summary}</p>
+                        <span class="text-brand-600 dark:text-blue-400 font-semibold text-sm inline-flex items-center gap-1">قراءة المقال كاملاً <i class="fa-solid fa-arrow-left text-xs"></i></span>
+                    </article>
+                `;
+            });
+        }
+
+        function filterCategory(cat) {
+            renderArticles(cat);
+        }
+
+        function openArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+            
+            document.getElementById('modalContent').innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-brand-50 text-brand-600 dark:bg-gray-700 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-bold">${article.category}</span>
+                    <span class="text-xs text-gray-400">${article.date}</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-black mb-4">${article.title}</h1>
+                <div class="text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 text-base border-t border-gray-100 dark:border-gray-700 pt-4">
+                    <p>${article.content}</p>
+                </div>
+                <div class="mt-8 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 text-center text-xs text-gray-400">
+                    مكان إعلان داخل المقال (AdSense In-Article)
+                </div>
+            `;
+            document.getElementById('articleModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('articleModal').classList.add('hidden');
+        }
+
+        // Dark Mode Toggle
+        const toggleBtn = document.getElementById('darkModeToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Initialize
+        renderArticles();
+    </script>
+</body>
+</html>
